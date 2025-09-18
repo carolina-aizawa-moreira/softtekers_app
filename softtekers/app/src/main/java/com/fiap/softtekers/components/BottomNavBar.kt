@@ -22,17 +22,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.absoluteOffset
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
+import com.fiap.softtekers.R
 
 @Composable
 fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     Column {
-        HorizontalDivider(color = Color.White, thickness = 1.dp)
+        HorizontalDivider(color = Color(red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 0.15f), thickness = 1.dp)
         BottomAppBar(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.tertiary,
-            contentPadding = BottomAppBarDefaults.ContentPadding
+            contentPadding = PaddingValues(25.dp,0.dp,),
+            modifier = Modifier.height(120.dp).heightIn(min = 0.dp)
         ) {
             IconButton(
                 onClick = {
@@ -40,58 +57,42 @@ fun BottomNavBar(navController: NavController) {
                 },
                 modifier = Modifier
                     .weight(1f)
+                    .height(120.dp)
                     .background(
                         if (currentRoute == "home") {
-                            MaterialTheme.colorScheme.surfaceContainerLowest
+                            Color(red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.15f)
                         } else {
                             Color.Transparent
                         }
                     )
             ) {
                 Icon(
-                    Icons.Outlined.Home,
+                    painter = painterResource(id = R.drawable.icon_home),
                     contentDescription = "Início",
                     modifier = Modifier.size(32.dp)
                 )
             }
             Box(
                 modifier = Modifier
-                    .weight(2f),
+                    .weight(2f)
+                ,
                 contentAlignment = Alignment.Center
-            ) {
-
-                FloatingActionButton(
-                    onClick = {
-//                Toast.makeText(
-//                    context,
-//                    "Você clicou no botão de ação!",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-                    },
-                    containerColor = MaterialTheme.colorScheme.tertiary,
-                    contentColor = Color.Black,
-                ) {
-                    Icon(
-                        Icons.Outlined.Search,
-                        contentDescription = "Você",
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-            }
+            ){}
             IconButton(
                 onClick = { navController.navigate("analisys") },
                 modifier = Modifier
                     .weight(1f)
+                    .height(120.dp)
                     .background(
                         if (currentRoute == "analisys") {
-                            MaterialTheme.colorScheme.surfaceContainerLowest
+                            Color(red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.15f)
                         } else {
                             Color.Transparent
                         }
                     )
             ) {
                 Icon(
-                    Icons.Outlined.Favorite,
+                    painter = painterResource(id = R.drawable.icon_heart),
                     contentDescription = "Análise",
                     modifier = Modifier.size(32.dp)
                 )
