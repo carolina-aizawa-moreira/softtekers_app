@@ -49,7 +49,7 @@ fun BottomNavBar(navController: NavController) {
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.tertiary,
             contentPadding = PaddingValues(25.dp,0.dp,),
-            modifier = Modifier.height(120.dp).heightIn(min = 0.dp)
+            modifier = Modifier.heightIn(min = 0.dp)
         ) {
             IconButton(
                 onClick = {
@@ -57,7 +57,7 @@ fun BottomNavBar(navController: NavController) {
                 },
                 modifier = Modifier
                     .weight(1f)
-                    .height(120.dp)
+                    .height(78.dp)
                     .background(
                         if (currentRoute == "home") {
                             Color(red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.15f)
@@ -82,7 +82,7 @@ fun BottomNavBar(navController: NavController) {
                 onClick = { navController.navigate("analisys") },
                 modifier = Modifier
                     .weight(1f)
-                    .height(120.dp)
+                    .height(78.dp)
                     .background(
                         if (currentRoute == "analisys") {
                             Color(red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.15f)

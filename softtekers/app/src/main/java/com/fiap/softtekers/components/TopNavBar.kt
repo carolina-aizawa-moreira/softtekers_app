@@ -46,17 +46,6 @@ fun TopNavBar(navController: NavController) {
                         Text(text = "Pular")
                     }
                 }
-            },
-            modifier = Modifier.drawBehind {
-                val strokeWidth = 1.dp.toPx() // Or a fixed value like 1f or 2f
-                val y = size.height - strokeWidth / 2 // Position at the bottom
-
-                drawLine(
-                    color = Color.White,
-                    start = Offset(0f, y),
-                    end = Offset(size.width, y),
-                    strokeWidth = strokeWidth
-                )
             }
         )
         HorizontalDivider(color = Color.White, thickness = 1.dp)

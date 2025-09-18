@@ -33,8 +33,8 @@ fun FabButton(navController: NavController) {
             contentColor = Color.Black,
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(80.dp)
-                .offset(y = 88.dp)
+                .size(90.dp)
+                .offset(y = 96.dp)
                 .drawBehind {
                     drawRoundRect(
                         color = Color(red = 0.6f, green = 0.6f, blue = 0.6f, alpha = 0.25f),

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,11 +23,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults.contentWindowInsets
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.zIndex
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -36,8 +41,12 @@ import com.fiap.softtekers.components.FabButton
 import com.fiap.softtekers.components.TopNavBar
 import com.fiap.softtekers.screens.AnalisysScreen
 import com.fiap.softtekers.screens.CheckInScreen
+import com.fiap.softtekers.screens.ComoSenteScreen
+import com.fiap.softtekers.screens.DiagnosticoRelacionamentoScreen
+import com.fiap.softtekers.screens.FormularioAnonimoScreen
 import com.fiap.softtekers.screens.HomeScreen
 import com.fiap.softtekers.screens.LoginScreen
+import com.fiap.softtekers.screens.SinaisDeAlertaScreen
 import com.fiap.softtekers.ui.theme.SofttekersTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,12 +61,12 @@ class MainActivity : ComponentActivity() {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
                 val showTopBar = when (currentRoute) {
-                    "home", "checkIn", "analisys" -> true // Show on these screens
-                    else -> false // Hide on other screens (e.g., "login")
+                    "login" -> false // Show on these screens
+                    else -> true // Hide on other screens (e.g., "login")
                 }
                 val showBottomBar = when (currentRoute) {
-                    "home", "analisys" -> true // Show on these screens
-                    else -> false // Hide on other screens (e.g., "login")
+                    "login", "checkIn",  -> false // Show on these screens
+                    else -> true // Hide on other screens (e.g., "login")
                 }
                 Scaffold(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -87,8 +96,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize() // Fill the available space
                             .padding(innerPadding) // <-- APPLY the PaddingValues here
-                    ) {
-
+                    ){
                         composable("login") {
                             LoginScreen(navController)
                         }
@@ -101,6 +109,83 @@ class MainActivity : ComponentActivity() {
                         composable("analisys"){
                             AnalisysScreen(navController)
                         }
+                        composable("formSinais") {
+                            Dialog(
+                                onDismissRequest = {} ,
+                                DialogProperties(
+                                    usePlatformDefaultWidth = false
+                                )
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.Black)
+                                        .zIndex(10F),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    SinaisDeAlertaScreen(navController)
+                                }
+                            }
+                        }
+                        composable("formClima") {
+                            Dialog(
+                                onDismissRequest = {},
+                                DialogProperties(
+                                    dismissOnBackPress = true,
+                                    usePlatformDefaultWidth = false
+                                )
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.Black)
+                                        .zIndex(10F),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    DiagnosticoRelacionamentoScreen(navController)
+                                }
+                            }
+                        }
+                        composable("formCarga") {
+                            Dialog(
+                                onDismissRequest = {},
+                                DialogProperties(
+                                    dismissOnBackPress = true,
+                                    usePlatformDefaultWidth = false
+                                )
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.Black)
+                                        .zIndex(10F),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    FormularioAnonimoScreen(navController)
+                                }
+                            }
+                        }
+                        composable("formSente") {
+                            Dialog(
+                                onDismissRequest = {},
+                                DialogProperties(
+                                    dismissOnBackPress = true,
+                                    usePlatformDefaultWidth = false
+                                )
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.Black)
+                                        .zIndex(10F),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    ComoSenteScreen(navController)
+                                }
+                            }
+                        }
+
+
                     }
                 }
             }
