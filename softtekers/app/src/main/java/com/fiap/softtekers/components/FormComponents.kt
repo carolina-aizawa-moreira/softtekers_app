@@ -22,7 +22,7 @@ fun PerguntaDropdown(
     Column(
         modifier = modifier.padding(vertical = 15.dp)
     ) {
-        Text(titulo, color = Color.White, fontSize = 16.sp)
+        Text(titulo, color = Color.White, fontSize = 20.sp)
 
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -65,3 +65,4 @@ fun PerguntaDropdown(
         }
     }
 }
+
