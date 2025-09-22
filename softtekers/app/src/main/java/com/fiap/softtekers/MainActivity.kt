@@ -9,26 +9,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.FabPosition
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults.contentWindowInsets
-import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.zIndex
@@ -44,7 +33,7 @@ import com.fiap.softtekers.screens.CheckInScreen
 import com.fiap.softtekers.screens.ComoSenteScreen
 import com.fiap.softtekers.screens.DiagnosticoRelacionamentoScreen
 import com.fiap.softtekers.screens.FormularioAnonimoScreen
-import com.fiap.softtekers.screens.HomeScreen
+import com.fiap.softtekers.screens.homescreen.HomeScreen
 import com.fiap.softtekers.screens.LoginScreen
 import com.fiap.softtekers.screens.SinaisDeAlertaScreen
 import com.fiap.softtekers.ui.theme.SofttekersTheme
@@ -101,7 +90,7 @@ class MainActivity : ComponentActivity() {
                             LoginScreen(navController)
                         }
                         composable("home") {
-                            HomeScreen(navController)
+                            HomeScreen()
                         }
                         composable("checkIn") {
                             CheckInScreen(navController)
