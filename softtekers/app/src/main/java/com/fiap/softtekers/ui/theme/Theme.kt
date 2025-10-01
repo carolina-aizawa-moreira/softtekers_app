@@ -1,8 +1,6 @@
 package com.fiap.softtekers.ui.theme
 
-import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -15,7 +13,16 @@ import androidx.compose.ui.platform.LocalContext
 private val DarkColorScheme = darkColorScheme(
     primary = YouPrimary,
     secondary = YouSecondary,
-    tertiary = YouTertiary
+    tertiary = YouTertiary,
+
+    /* Other default colors to override*/
+    background = YouPrimary,
+    surface = YouPrimary,
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onTertiary = Color.Black,
+    onBackground = Color.White,
+    onSurface = Color.White,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -35,7 +42,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun SofttekersTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit

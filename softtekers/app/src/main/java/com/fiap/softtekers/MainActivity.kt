@@ -5,17 +5,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults.contentWindowInsets
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
@@ -28,14 +34,14 @@ import androidx.navigation.compose.rememberNavController
 import com.fiap.softtekers.components.BottomNavBar
 import com.fiap.softtekers.components.FabButton
 import com.fiap.softtekers.components.TopNavBar
-import com.fiap.softtekers.screens.AnalisysScreen
 import com.fiap.softtekers.screens.CheckInScreen
 import com.fiap.softtekers.screens.ComoSenteScreen
 import com.fiap.softtekers.screens.DiagnosticoRelacionamentoScreen
 import com.fiap.softtekers.screens.FormularioAnonimoScreen
-import com.fiap.softtekers.screens.homescreen.HomeScreen
 import com.fiap.softtekers.screens.LoginScreen
 import com.fiap.softtekers.screens.SinaisDeAlertaScreen
+import com.fiap.softtekers.screens.analisysScreen.AnalisysScreen
+import com.fiap.softtekers.screens.homescreen.HomeScreen
 import com.fiap.softtekers.ui.theme.SofttekersTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,6 +52,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             SofttekersTheme {
                 val navController = rememberNavController()
+
+                var showDialog by remember { mutableStateOf(false) }
                 // Observe the current back stack entry
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
@@ -54,7 +62,7 @@ class MainActivity : ComponentActivity() {
                     else -> true // Hide on other screens (e.g., "login")
                 }
                 val showBottomBar = when (currentRoute) {
-                    "login", "checkIn",  -> false // Show on these screens
+                    "login", "checkIn", "formSente",  -> false // Show on these screens
                     else -> true // Hide on other screens (e.g., "login")
                 }
                 Scaffold(
@@ -85,34 +93,39 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize() // Fill the available space
                             .padding(innerPadding) // <-- APPLY the PaddingValues here
+                            .fillMaxWidth()
                     ){
                         composable("login") {
                             LoginScreen(navController)
                         }
                         composable("home") {
-                            HomeScreen()
+                            HomeScreen(navController)
                         }
                         composable("checkIn") {
                             CheckInScreen(navController)
+                        }
+                        composable("formSente") {
+                            ComoSenteScreen(navController)
                         }
                         composable("analisys"){
                             AnalisysScreen(navController)
                         }
                         composable("formSinais") {
                             Dialog(
-                                onDismissRequest = {} ,
+                                onDismissRequest = {showDialog = false} ,
                                 DialogProperties(
                                     usePlatformDefaultWidth = false
                                 )
                             ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(Color.Black)
-                                        .zIndex(10F),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    SinaisDeAlertaScreen(navController)
+                                AnimatedVisibility(visible = true, enter = slideInVertically(), exit = slideOutVertically()) {
+                                    Surface(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .background(Color.Black)
+                                            .zIndex(10F),
+                                    ) {
+                                        SinaisDeAlertaScreen(navController)
+                                    }
                                 }
                             }
                         }
@@ -124,12 +137,11 @@ class MainActivity : ComponentActivity() {
                                     usePlatformDefaultWidth = false
                                 )
                             ) {
-                                Box(
+                                Surface(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .background(Color.Black)
                                         .zIndex(10F),
-                                    contentAlignment = Alignment.Center
                                 ) {
                                     DiagnosticoRelacionamentoScreen(navController)
                                 }
@@ -143,37 +155,16 @@ class MainActivity : ComponentActivity() {
                                     usePlatformDefaultWidth = false
                                 )
                             ) {
-                                Box(
+                                Surface(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .background(Color.Black)
                                         .zIndex(10F),
-                                    contentAlignment = Alignment.Center
                                 ) {
                                     FormularioAnonimoScreen(navController)
                                 }
                             }
                         }
-                        composable("formSente") {
-                            Dialog(
-                                onDismissRequest = {},
-                                DialogProperties(
-                                    dismissOnBackPress = true,
-                                    usePlatformDefaultWidth = false
-                                )
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(Color.Black)
-                                        .zIndex(10F),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    ComoSenteScreen(navController)
-                                }
-                            }
-                        }
-
 
                     }
                 }

@@ -1,28 +1,48 @@
 package com.fiap.softtekers.screens
 
-import androidx.compose.foundation.layout.*
+import android.widget.Toast
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults.contentWindowInsets
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.fiap.softtekers.components.PerguntaDropdown // ✅ usa componente compartilhado
-
-// ---------- COMPOSABLE PRINCIPAL ----------
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun FormularioPreview() {
-    val navController = rememberNavController()
-    FormularioAnonimoScreen(navController = navController)
-}
+import com.fiap.softtekers.components.PerguntaDropdown
+import com.fiap.softtekers.ui.theme.YouPrimarySubtle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,45 +53,101 @@ fun FormularioAnonimoScreen(navController: NavController) {
     var mensagem by remember { mutableStateOf("") }
 
     Scaffold(
+        containerColor = Color.Black,
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        contentWindowInsets = contentWindowInsets,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        "Formulário Anônimo",
-                        color = Color.White,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
+            Column {
+                TopAppBar(
+                    title = {
+                        Text(
+                            "Formulário Anônimo",fontSize = 14.sp
+                        )
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color.Black,
+                        titleContentColor = Color.White
+                    ),
+                    actions = {
+                        IconButton(onClick = { navController.popBackStack() }) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Fechar",
+                                tint = Color.White
+                            )
+                        }
+                    }
+                )
+                HorizontalDivider(
+                    color = Color(
+                        red = 1.0f,
+                        green = 1.0f,
+                        blue = 1.0f,
+                        alpha = 0.15f
+                    ), thickness = 1.dp
+                )
+            }
+        },
+        bottomBar = {
+
+            Column {
+                HorizontalDivider(
+                    color = Color(
+                        red = 1.0f,
+                        green = 1.0f,
+                        blue = 1.0f,
+                        alpha = 0.15f
+                    ), thickness = 1.dp
+                )
+                BottomAppBar(
                     containerColor = Color.Black,
-                    titleContentColor = Color.White
-                ),
-                actions = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    contentPadding = PaddingValues(25.dp, 0.dp,),
+                    modifier = Modifier.heightIn(min = 0.dp)
+                ) { // 🔵 Botão enviar (simulação)
+                    Button(
+                        onClick = {
+                            // Simulação de envio
+                            mensagem = "Formulário enviado com sucesso!"
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        colors = ButtonDefaults.buttonColors(Color(0xFF1A5CFF)),
+                        shape = RoundedCornerShape(10.dp)
+                    ) {
                         Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Fechar",
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Enviar",
                             tint = Color.White
                         )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            "Enviar",
+                            color = Color.White,
+                            fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
+                            fontWeight = FontWeight.Normal // 🔹 opcional: deixa em negrito
+                        )
                     }
+
                 }
-            )
-        },
-        containerColor = Color.Black // fundo preto no Scaffold
-    ) { innerPadding ->
+            }
+        }
+    ) { innerPadding: PaddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(20.dp)
+                .padding(20.dp, 0.dp)
+                .verticalScroll(rememberScrollState())
         ) {
+            Spacer(modifier = Modifier.height(40.dp).fillMaxWidth())
             // 🔵 Título principal
             Text(
                 text = "Fatores de Carga de Trabalho",
-                fontSize = 45.sp,
+                fontSize = 40.sp,
+                lineHeight = 48.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF5A73FC),
+                color = YouPrimarySubtle,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
@@ -104,34 +180,8 @@ fun FormularioAnonimoScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // 🔵 Botão enviar (simulação)
-            Button(
-                onClick = {
-                    // Simulação de envio
-                    mensagem = "Formulário enviado com sucesso!"
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                colors = ButtonDefaults.buttonColors(Color(0xFF1A5CFF))
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Check,
-                    contentDescription = "Enviar",
-                    tint = Color.White
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    "Enviar",
-                    color = Color.White,
-                    fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
-                    fontWeight = FontWeight.Bold // 🔹 opcional: deixa em negrito
-                )
-            }
-
             if (mensagem.isNotEmpty()) {
-                Spacer(Modifier.height(16.dp))
-                Text(mensagem, color = Color.White)
+                Toast.makeText(LocalContext.current, mensagem, Toast.LENGTH_SHORT).show()
             }
         }
     }

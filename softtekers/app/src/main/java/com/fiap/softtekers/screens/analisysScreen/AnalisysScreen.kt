@@ -1,17 +1,27 @@
-package com.fiap.softtekers.screens.homescreen
+package com.fiap.softtekers.screens.analisysScreen
 
-//import com.fiap.softtekers.screens.homescreen.components.CargaDeTrabalho
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.fiap.softtekers.screens.homescreen.components.CardCarrousel
-
+import com.fiap.softtekers.R
+import com.fiap.softtekers.screens.analisysScreen.components.AnalisysCardCarrousel
+import com.fiap.softtekers.screens.homescreen.Form
+import com.fiap.softtekers.screens.homescreen.Question
+import com.fiap.softtekers.screens.homescreen.data
+import com.fiap.softtekers.ui.theme.YouTertiary
 
 data class Form(val title: String, val questions: List<Question>, val route: String)
 data class Question(val title: String?, val answer: String?, val icon: Boolean?)
@@ -23,7 +33,7 @@ val data = listOf(
             Question("Seu emoji hoje", "", true),
             Question("Como você sente hoje?", "", false),
         ),
-        "checkIn"
+        "formCarga"
     ),
     Form(
         "Fatores de Carga de Trabalho",
@@ -53,11 +63,8 @@ val data = listOf(
         "formClima"
     )
 )
-
-
-//todo: acrescentar navController
 @Composable
-fun HomeScreen(navController: NavController) {
+fun AnalisysScreen(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -66,8 +73,22 @@ fun HomeScreen(navController: NavController) {
                 color = Color(0xFF1948FF),
             )
     ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, bottom = 20.dp)
+
+        ){
+            Icon(
+                painter = painterResource(id = R.drawable.icon_heart),
+                contentDescription = "Análise",
+                modifier = Modifier.size(32.dp),
+                tint = YouTertiary
+            )
+        }
         data.forEach { form ->
-            CardCarrousel(form.title, form.questions, form.route, navController)
+            AnalisysCardCarrousel(form.title, form.questions )
         }
 
     }

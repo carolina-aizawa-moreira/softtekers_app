@@ -1,9 +1,6 @@
 package com.fiap.softtekers.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -13,11 +10,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -31,13 +26,12 @@ fun TopNavBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
     Column {
         TopAppBar(
-            title = { Text(currentRoute.toString()) },
+            title = { Text(currentRoute.toString(),fontSize = 14.sp) },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
                 titleContentColor = MaterialTheme.colorScheme.onPrimary
             ),
             actions = {
-                if (currentRoute == "checkIn") {
+                if (currentRoute == "checkIn" || currentRoute == "formSente") {
                     Button(
                         onClick = {
                             navController.navigate("home")
@@ -48,6 +42,6 @@ fun TopNavBar(navController: NavController) {
                 }
             }
         )
-        HorizontalDivider(color = Color.White, thickness = 1.dp)
+        HorizontalDivider(color = Color(red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 0.15f), thickness = 1.dp)
     }
 }

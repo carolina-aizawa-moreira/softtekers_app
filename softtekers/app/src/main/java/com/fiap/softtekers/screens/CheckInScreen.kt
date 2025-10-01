@@ -2,10 +2,27 @@ package com.fiap.softtekers.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,27 +51,28 @@ fun CheckInScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF2563EB))
-            .padding(20.dp),
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column {
+        Column(
+            modifier = Modifier
+                .weight(1f) // This makes the Column take available vertical space
+                .padding(20.dp, 0.dp)
+                .verticalScroll(rememberScrollState()),
+        ) {
             // Pergunta principal
-            Column(modifier = Modifier.padding(bottom = 24.dp)) {
+            Row(
+                modifier = Modifier
+                    .padding(bottom = 24.dp)
+            ) {
                 Text(
-                    text = "Já escolheu o",
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-                Text(
-                    text = "seu emoji de hoje?",
-                    fontSize = 28.sp,
+                    text = "Já escolheu o seu emoji de hoje?",
+                    fontSize = 40.sp,
+                    lineHeight = 48.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
             }
-
 
             // Lista de emojis com seleção
             emojiOptions.forEach { option ->
@@ -94,27 +112,44 @@ fun CheckInScreen(navController: NavController) {
                 }
             }
         }
-
-        // Botão próximo
-        Button(
-            onClick = { navController.navigate("home") },
-            enabled = selectedEmoji != null,
+        HorizontalDivider(
+            color = Color(
+                red = 1.0f,
+                green = 1.0f,
+                blue = 1.0f,
+                alpha = 0.15f
+            ), thickness = 1.dp
+        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
+                .padding(20.dp, 10.dp)
                 .fillMaxWidth()
-                .height(55.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF00EFD2),
-                contentColor = Color.Black,
-                disabledContainerColor = Color(0xFF00EFD2).copy(alpha = 0.5f),
-                disabledContentColor = Color.Black.copy(alpha = 0.5f)
-            ),
-            shape = RoundedCornerShape(10.dp)
         ) {
-            Text(
-                "Próximo",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
+            // Botão próximo
+            Button(
+                onClick = { navController.navigate("formSente") },
+                enabled = selectedEmoji != null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF00EFD2),
+                    contentColor = Color.Black,
+                    disabledContainerColor = Color(0xFF00EFD2).copy(alpha = 0.5f),
+                    disabledContentColor = Color.Black.copy(alpha = 0.5f)
+                ),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(
+                    "Próximo",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
+
+
     }
+
 }
