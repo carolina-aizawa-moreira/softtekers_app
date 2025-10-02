@@ -13,5 +13,9 @@ val Pink40 = Color(0xFF7D5260)
 val YouPrimary = Color(0xFF1948FF)
 
 val YouPrimarySubtle = Color(0xFFD0BCFF)
+
+val YouPrimaryTranslucid = Color(0xF2001F75)
 val YouSecondary = Color(0xFF0288D1)
 val YouTertiary = Color(0xFF00EFD2)
+
+val YouShade = Color(0x32000000)

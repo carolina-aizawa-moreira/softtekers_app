@@ -1,13 +1,9 @@
 package com.fiap.softtekers.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,10 +20,14 @@ import androidx.navigation.NavController
 import com.fiap.softtekers.R
 
 @Composable
-fun FabButton(navController: NavController) {
+fun FabButton(
+    navController: NavController,
+    onFabClick: () -> Unit) {
     Box() {
         FloatingActionButton(
-            onClick = { /* stub */ },
+            onClick = {
+                onFabClick()
+            },
             shape = RoundedCornerShape(18.dp),
             containerColor = MaterialTheme.colorScheme.tertiary,
             contentColor = Color.Black,
@@ -51,3 +51,4 @@ fun FabButton(navController: NavController) {
         }
     }
 }
+

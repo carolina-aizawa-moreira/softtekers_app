@@ -39,7 +39,6 @@ fun CardCarrousel(
             .background(
                 color = Color(0xFF1948FF),
             )
-            .padding(top = 16.dp)
     ) {
         Column(
             modifier = Modifier
@@ -51,7 +50,7 @@ fun CardCarrousel(
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp, horizontal = 20.dp)
+                    .padding(vertical = 8.dp, horizontal = 20.dp)
             ) {
                 Text(
                     title,

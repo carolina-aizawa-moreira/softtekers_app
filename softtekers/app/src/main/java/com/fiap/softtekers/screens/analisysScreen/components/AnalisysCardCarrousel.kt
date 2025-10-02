@@ -29,7 +29,6 @@ fun AnalisysCardCarrousel(
             .background(
                 color = Color(0xFF1948FF),
             )
-            .padding(top = 16.dp)
     ) {
         Column(
             modifier = Modifier
