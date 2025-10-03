@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.fiap.softtekers.repository.getAllForms
-import com.fiap.softtekers.screens.homescreen.components.CardCarrousel
+import com.fiap.softtekers.screens.homescreen.components.CardQuestionCarrousel
 
 
 //todo: acrescentar navController
@@ -34,7 +34,7 @@ fun HomeScreen(navController: NavController) {
             )
     ) {
         items(formsListState){
-            CardCarrousel(form = it, it.route, navController)
+            CardQuestionCarrousel(form = it, it.route, navController)
         }
     }
 }

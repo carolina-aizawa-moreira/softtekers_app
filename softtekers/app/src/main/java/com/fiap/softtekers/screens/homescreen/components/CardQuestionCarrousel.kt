@@ -27,7 +27,7 @@ import androidx.navigation.NavController
 import com.fiap.softtekers.model.Form
 
 @Composable
-fun CardCarrousel(
+fun CardQuestionCarrousel(
     form: Form,
     route: String,
     navController: NavController) {
@@ -94,7 +94,7 @@ fun CardCarrousel(
                 contentPadding = PaddingValues(horizontal = 20.dp)
             ) {
                 items( form.questions ) {
-                    DefaultCard(
+                    CardQuestion(
                         it,
                         navController,
                         route

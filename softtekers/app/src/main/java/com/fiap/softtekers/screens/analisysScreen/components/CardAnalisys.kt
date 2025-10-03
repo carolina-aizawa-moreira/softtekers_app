@@ -29,7 +29,7 @@ import com.fiap.softtekers.ui.theme.YouPrimary
 
 
 @Composable
-fun AnalisysCard(question: QuestionAnalisys, scaleType: Int? = 0) {
+fun CardAnalisys(question: QuestionAnalisys, scaleType: Int? = 0) {
 
     Card(
         border = BorderStroke(0.dp, Color.Transparent),

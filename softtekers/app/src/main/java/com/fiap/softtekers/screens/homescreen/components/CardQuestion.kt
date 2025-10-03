@@ -26,7 +26,7 @@ import com.fiap.softtekers.repository.getAllEmojis
 import com.fiap.softtekers.ui.theme.YouPrimary
 
 @Composable
-fun DefaultCard(question: Question, navController: NavController, route: String){
+fun CardQuestion(question: Question, navController: NavController, route: String){
 
     val answered = question.answer!!.isNotEmpty()
     Card(
@@ -72,7 +72,7 @@ fun DefaultCard(question: Question, navController: NavController, route: String)
             Spacer(modifier = Modifier.weight(1f))
             if(answered){
                 Text(
-                    text = question.answer!!,
+                    text = question.answer,
                     color = YouPrimary,
                     fontSize = 14.sp,
                     lineHeight = 16.sp,

@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.fiap.softtekers.model.FormAnalisys
 
 @Composable
-fun AnalisysCardCarrousel(
+fun CardAnalisysCarrousel(
     form: FormAnalisys) {
 
     val questions = form.questions
@@ -62,7 +62,7 @@ fun AnalisysCardCarrousel(
                 contentPadding = PaddingValues(horizontal = 20.dp)
             ) {
                 items( form.questions ) {
-                    AnalisysCard(
+                    CardAnalisys(
                         it,
 
                         form.scaleType as Int?

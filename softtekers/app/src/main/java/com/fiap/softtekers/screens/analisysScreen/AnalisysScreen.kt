@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.fiap.softtekers.R
 import com.fiap.softtekers.repository.getAllFormAnalisys
-import com.fiap.softtekers.screens.analisysScreen.components.AnalisysCardCarrousel
+import com.fiap.softtekers.screens.analisysScreen.components.CardAnalisysCarrousel
 import com.fiap.softtekers.ui.theme.YouTertiary
 
 @Composable
@@ -56,7 +56,7 @@ fun AnalisysScreen(navController: NavController){
         }
 
         items(formsListState) { form ->
-            AnalisysCardCarrousel(form = form)
+            CardAnalisysCarrousel(form = form)
         }
     }
 }
