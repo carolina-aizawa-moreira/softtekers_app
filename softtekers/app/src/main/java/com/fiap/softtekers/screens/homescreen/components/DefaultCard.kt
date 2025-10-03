@@ -21,19 +21,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.fiap.softtekers.screens.EmojiOption
+import com.fiap.softtekers.model.Question
+import com.fiap.softtekers.repository.getAllEmojis
 import com.fiap.softtekers.ui.theme.YouPrimary
-val emojiOptions = listOf(
-    EmojiOption("😊", "Alegre", "alegre"),
-    EmojiOption("😟", "Triste", "triste"),
-    EmojiOption("😩", "Cansado", "cansado"),
-    EmojiOption("😤", "Ansioso", "ansioso"),
-    EmojiOption("😱", "Medo", "medo"),
-)
-@Composable
-fun DefaultCard(title: String, subtitle: String, icon: Boolean, navController: NavController, route: String){
-    val ansewered = subtitle.isNotEmpty()
 
+@Composable
+fun DefaultCard(question: Question, navController: NavController, route: String){
+
+    val answered = question.answer!!.isNotEmpty()
     Card(
         onClick = { navController.navigate(route) },
         border = BorderStroke(0.dp, Color.Transparent),
@@ -56,16 +51,16 @@ fun DefaultCard(title: String, subtitle: String, icon: Boolean, navController: N
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            if(icon){
+            if(question.icon!!){
                 Text(
-                    text = emojiOptions[0].emoji,
+                    text = getAllEmojis()[0].emoji,
                     fontSize = 32.sp
                 )
                 Spacer(modifier = Modifier.weight(1f))
             }
             // Use a Spacer with weight to push the content upwards
             Text(
-                title,
+                question.title!!,
                 color = YouPrimary,
                 fontSize = 14.sp,
                 lineHeight = 16.sp,
@@ -75,10 +70,9 @@ fun DefaultCard(title: String, subtitle: String, icon: Boolean, navController: N
             )
             // Use a Spacer with weight to push the content upwards
             Spacer(modifier = Modifier.weight(1f))
-            if(ansewered){
+            if(answered){
                 Text(
-                    text = subtitle,
-                    //TODO: mudar cor do texto de acordo com a escala: Muito Leve,Leve,Média,Alta,Muito Alta
+                    text = question.answer!!,
                     color = YouPrimary,
                     fontSize = 14.sp,
                     lineHeight = 16.sp,
@@ -96,7 +90,6 @@ fun DefaultCard(title: String, subtitle: String, icon: Boolean, navController: N
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .fillMaxWidth()
-
                 )
             }
         }

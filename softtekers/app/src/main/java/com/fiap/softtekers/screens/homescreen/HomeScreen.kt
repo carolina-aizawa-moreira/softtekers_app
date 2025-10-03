@@ -1,74 +1,40 @@
 package com.fiap.softtekers.screens.homescreen
 
-//import com.fiap.softtekers.screens.homescreen.components.CargaDeTrabalho
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.fiap.softtekers.repository.getAllForms
 import com.fiap.softtekers.screens.homescreen.components.CardCarrousel
 
 
-data class Form(val title: String, val questions: List<Question>, val route: String)
-data class Question(val title: String?, val answer: String?, val icon: Boolean?)
-
-val data = listOf(
-    Form(
-        "Mapeamento de Riscos",
-        listOf(
-            Question("Seu emoji hoje", "", true),
-            Question("Como você sente hoje?", "", false),
-        ),
-        "checkIn"
-    ),
-    Form(
-        "Fatores de Carga de Trabalho",
-        listOf(
-            Question("Carga de Trabalho", "", false),
-            Question("Trabalho afeta sua qualidade de vida", "", false),
-            Question("Trabalho além do seu horário regular", "", false)
-        ),
-        "formCarga"
-    ),
-    Form(
-        "Sinais de Alerta",
-        listOf(
-            Question("Você tem apresentado alterações no sono?", "", false),
-            Question("Você tem sendito irritabilidade ou mudanças de humor?", "", false),
-            Question("Você tem sentido fadiga ou falta de energia?", "", false)
-        ),
-        "formSinais"
-    ),
-    Form(
-        "Diagnóstico de Clima / Relacionamento",
-        listOf(
-            Question("Como você avalia a comunicação com sua equipe?", "", false),
-            Question("Você se sente à vontade para dar e receber feedback?", "", false),
-            Question("Como você avalia o relacionamento com seus colegas?", "", false)
-        ),
-        "formClima"
-    )
-)
-
-
 //todo: acrescentar navController
+
 @Composable
 fun HomeScreen(navController: NavController) {
-    Column(
+
+    var formsListState by remember {
+        mutableStateOf(getAllForms())
+    }
+
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
             .background(
                 color = Color(0xFF1948FF),
             )
     ) {
-        data.forEach { form ->
-            CardCarrousel(form.title, form.questions, form.route, navController)
+        items(formsListState){
+            CardCarrousel(form = it, it.route, navController)
         }
-
     }
 }

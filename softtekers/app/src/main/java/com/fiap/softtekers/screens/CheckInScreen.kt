@@ -30,16 +30,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-
-data class EmojiOption(val emoji: String, val label: String, val value: String)
-
-val emojiOptions = listOf(
-    EmojiOption("😊", "Alegre", "alegre"),
-    EmojiOption("😟", "Triste", "triste"),
-    EmojiOption("😩", "Cansado", "cansado"),
-    EmojiOption("😤", "Ansioso", "ansioso"),
-    EmojiOption("😱", "Medo", "medo"),
-)
+import com.fiap.softtekers.model.EmojiOption
+import com.fiap.softtekers.repository.getAllEmojis
 
 @Composable
 fun CheckInScreen(navController: NavController) {
@@ -75,7 +67,7 @@ fun CheckInScreen(navController: NavController) {
             }
 
             // Lista de emojis com seleção
-            emojiOptions.forEach { option ->
+            getAllEmojis().forEach { option ->
                 val isSelected = option == selectedEmoji
                 Row(
                     modifier = Modifier
