@@ -1,8 +1,11 @@
 package com.fiap.softtekers.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +30,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.fiap.softtekers.R
@@ -36,6 +40,7 @@ import com.fiap.softtekers.ui.theme.YouTertiary
 
 @Composable
 fun YouBottomSheet(){
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -165,6 +170,12 @@ fun YouBottomSheet(){
                     )
                     .weight(1F)
                     .clip(shape = RoundedCornerShape(16.dp))
+                    .clickable {
+                        val intent = Intent(Intent.ACTION_DIAL).apply {
+                            data = Uri.parse("tel:0000")
+                        }
+                        context.startActivity(intent)
+                    }
             ) {
                 Column (
                     verticalArrangement = Arrangement.SpaceBetween,
@@ -196,6 +207,13 @@ fun YouBottomSheet(){
                     )
                     .weight(1F)
                     .clip(shape = RoundedCornerShape(16.dp))
+                    .clickable {
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("smsto:0000")
+                            putExtra("sms_body", "Olá, estou precisando conversar com alguem. Você pode me ligar?")
+                        }
+                        context.startActivity(intent)
+                    }
             ) {
                 Column (
                     verticalArrangement = Arrangement.SpaceBetween,
