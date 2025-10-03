@@ -15,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
@@ -28,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 val opcoes = listOf("Motivado", "Cansado", "Preocupado", "Estressado", "Animado")
@@ -53,14 +53,12 @@ fun ComoSenteScreen(navController: NavController) {
         ) {
             // Pergunta principal
             Row(
-                modifier = Modifier
-                    .padding(bottom = 24.dp)
+                modifier = Modifier.padding(bottom = 24.dp)
             ) {
                 Text(
                     text = "Como você se sente hoje?",
-                    fontSize = 40.sp,
-                    lineHeight = 48.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.Normal,
                     color = Color.White
                 )
             }
@@ -74,12 +72,10 @@ fun ComoSenteScreen(navController: NavController) {
                         .padding(vertical = 8.dp)
                         .clickable { selecionado = opcao }
                         .padding(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                    verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = opcao,
-                        fontSize = 24.sp,
-                        color = Color.White,
+                        style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.weight(1f)
                     )
@@ -96,10 +92,7 @@ fun ComoSenteScreen(navController: NavController) {
         }
         HorizontalDivider(
             color = Color(
-                red = 1.0f,
-                green = 1.0f,
-                blue = 1.0f,
-                alpha = 0.15f
+                red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 0.15f
             ), thickness = 1.dp
         )
         Row(
@@ -121,12 +114,12 @@ fun ComoSenteScreen(navController: NavController) {
                     disabledContainerColor = Color(0xFF00EFD2).copy(alpha = 0.5f), // ✅ cor quando desabilitado
                     disabledContentColor = Color.Black.copy(alpha = 0.5f)
                 ),
-                shape = RoundedCornerShape(4.dp)
+                shape = RoundedCornerShape(10.dp)
             ) {
                 Text(
                     "Ir para o app",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Light
                 )
             }
         }

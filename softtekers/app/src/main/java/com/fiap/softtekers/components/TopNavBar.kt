@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -26,7 +25,12 @@ fun TopNavBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
     Column {
         TopAppBar(
-            title = { Text(currentRoute.toString(),fontSize = 14.sp) },
+            title = {
+                Text(
+                    currentRoute.toString(),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
             colors = TopAppBarDefaults.topAppBarColors(
                 titleContentColor = MaterialTheme.colorScheme.onPrimary
             ),
@@ -42,6 +46,9 @@ fun TopNavBar(navController: NavController) {
                 }
             }
         )
-        HorizontalDivider(color = Color(red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 0.15f), thickness = 1.dp)
+        HorizontalDivider(
+            color = Color(red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 0.15f),
+            thickness = 1.dp
+        )
     }
 }

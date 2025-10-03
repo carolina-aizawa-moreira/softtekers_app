@@ -4,12 +4,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +23,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.fiap.softtekers.R
@@ -30,7 +36,7 @@ fun LoginScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color(MaterialTheme.colorScheme.surface.value))
-            .paint(  painterResource(id = R.drawable.background), contentScale = ContentScale.Crop)
+            .paint(painterResource(id = R.drawable.background), contentScale = ContentScale.Crop)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -39,7 +45,7 @@ fun LoginScreen(navController: NavController) {
                 .padding(20.dp)
         ) {
             Image(
-            painter = painterResource(id = R.drawable.softtek_brand),
+                painter = painterResource(id = R.drawable.softtek_brand),
                 contentDescription = "You Brand",
                 modifier = Modifier.width(120.dp)
             )
@@ -48,11 +54,12 @@ fun LoginScreen(navController: NavController) {
                 contentDescription = "You Brand"
             )
             Spacer(modifier = Modifier.padding(16.dp))
-            Text(text = "Você em primeiro lugar.",
+            Text(
+                text = "Você em primeiro lugar.",
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.tertiary,
 
-            )
+                )
             Spacer(modifier = Modifier.padding(8.dp))
             Text(
                 text = "Programa de apoio à saúde mental e psicossocial dos Softtekers",
@@ -64,9 +71,24 @@ fun LoginScreen(navController: NavController) {
                 onClick = {
                     navController.navigate("checkIn")
                 },
-                colors = ButtonDefaults.buttonColors(YouTertiary)
+                colors = ButtonDefaults.buttonColors(YouTertiary),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(horizontal = 18.dp, vertical = 12.dp),
+
             ) {
-                Text(text = "Entrar")
+                Text(
+                    text = "Entrar",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(Modifier.width(8.dp))
+
+                Icon(
+                    imageVector = Icons.Default.ArrowForward,
+                    contentDescription = "Enviar",
+                    tint = Color.Black
+                )
             }
         }
     }

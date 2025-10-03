@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.fiap.softtekers.model.Form
 
@@ -57,7 +57,7 @@ fun CardQuestionCarrousel(
                 Text(
                     form.title,
                     color = Color(0xFFF0F2FA),
-                    fontSize = 20.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .weight(1f)
@@ -83,8 +83,8 @@ fun CardQuestionCarrousel(
                 ) {
                     Text(
                         "Responder",
-                        color = Color(0xFF00EFD2),
-                        fontSize = 16.sp,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color(0xFF00EFD2)
                     )
                 }
             }

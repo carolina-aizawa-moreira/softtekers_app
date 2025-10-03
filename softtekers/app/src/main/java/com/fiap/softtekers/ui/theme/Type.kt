@@ -44,7 +44,7 @@ val Typography = Typography(
     bodySmall = TextStyle(
         fontFamily = HankenGrotesk,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
+        fontSize = 14.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),

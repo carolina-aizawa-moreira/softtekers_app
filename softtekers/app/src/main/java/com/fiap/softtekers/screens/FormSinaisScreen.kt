@@ -72,7 +72,8 @@ fun SinaisDeAlertaScreen(navController: NavController) {
                 TopAppBar(
                     title = {
                         Text(
-                            "Formulário Anônimo",fontSize = 14.sp
+                            "Formulário Anônimo",
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -136,7 +137,7 @@ fun SinaisDeAlertaScreen(navController: NavController) {
                             "Enviar",
                             color = Color.White,
                             fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
-                            fontWeight = FontWeight.Normal // 🔹 opcional: deixa em negrito
+                            fontWeight = FontWeight.Light // 🔹 opcional: deixa em negrito
                         )
                     }
                 }
@@ -162,28 +163,28 @@ fun SinaisDeAlertaScreen(navController: NavController) {
 
             // Pergunta 1
             PerguntaDropdown(
-                titulo = "Você tem apresentado alterações no sono?",
-                resposta = resposta1,
+                title = "Você tem apresentado alterações no sono?",
+                answer = resposta1,
                 onSelect = { resposta1 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 2
             PerguntaDropdown(
-                titulo = "Você tem sentido irritabilidade ou mudanças de humor?",
-                resposta = resposta2,
+                title = "Você tem sentido irritabilidade ou mudanças de humor?",
+                answer = resposta2,
                 onSelect = { resposta2 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 3
             PerguntaDropdown(
-                titulo = "Você tem sentido fadiga ou falta de energia?",
-                resposta = resposta3,
+                title = "Você tem sentido fadiga ou falta de energia?",
+                answer = resposta3,
                 onSelect = { resposta3 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 

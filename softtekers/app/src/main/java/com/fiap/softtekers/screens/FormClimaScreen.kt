@@ -72,7 +72,8 @@ fun DiagnosticoRelacionamentoScreen(navController: NavController) {
                 TopAppBar(
                     title = {
                         Text(
-                            "Formulário Anônimo",fontSize = 14.sp
+                            "Formulário Anônimo",
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -132,12 +133,12 @@ fun DiagnosticoRelacionamentoScreen(navController: NavController) {
                             contentDescription = "Enviar",
                             tint = Color.White
                         )
-                        Spacer(Modifier.width(8.dp))
+                        Spacer(Modifier.width(10.dp))
                         Text(
                             "Enviar",
                             color = Color.White,
-                            fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
-                            fontWeight = FontWeight.Normal // 🔹 opcional: deixa em negrito
+                            style = MaterialTheme.typography.bodyLarge, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
+                            fontWeight = FontWeight.Light // 🔹 opcional: deixa em negrito
                         )
                     }
                 }
@@ -164,28 +165,28 @@ fun DiagnosticoRelacionamentoScreen(navController: NavController) {
 
             // Pergunta 1
             PerguntaDropdown(
-                titulo = "Como você avalia a comunicação com sua equipe?",
-                resposta = resposta1,
+                title = "Como você avalia a comunicação com sua equipe?",
+                answer = resposta1,
                 onSelect = { resposta1 = it },
-                opcoes = listOf("Muito ruim", "Ruim", "Regular", "Boa", "Excelente"),
+                options = listOf("Muito ruim", "Ruim", "Regular", "Boa", "Excelente"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 2
             PerguntaDropdown(
-                titulo = "Você se sente à vontade para dar e receber feedback?",
-                resposta = resposta2,
+                title = "Você se sente à vontade para dar e receber feedback?",
+                answer = resposta2,
                 onSelect = { resposta2 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 3
             PerguntaDropdown(
-                titulo = "Como você avalia o relacionamento com seus colegas?",
-                resposta = resposta3,
+                title = "Como você avalia o relacionamento com seus colegas?",
+                answer = resposta3,
                 onSelect = { resposta3 = it },
-                opcoes = listOf("Muito ruim", "Ruim", "Regular", "Bom", "Excelente"),
+                options = listOf("Muito ruim", "Ruim", "Regular", "Bom", "Excelente"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 

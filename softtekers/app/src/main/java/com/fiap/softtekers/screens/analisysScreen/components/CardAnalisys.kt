@@ -63,8 +63,7 @@ fun CardAnalisys(question: QuestionAnalisys, scaleType: Int? = 0) {
             Text(
                 question.title!!,
                 color = Color.White,
-                fontSize = 14.sp,
-                lineHeight = 16.sp,
+                style = MaterialTheme.typography.bodySmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .fillMaxWidth()

@@ -39,7 +39,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.fiap.softtekers.components.PerguntaDropdown
 import com.fiap.softtekers.ui.theme.YouPrimarySubtle
@@ -61,7 +60,8 @@ fun FormularioAnonimoScreen(navController: NavController) {
                 TopAppBar(
                     title = {
                         Text(
-                            "Formulário Anônimo",fontSize = 14.sp
+                            "Formulário Anônimo",
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -101,7 +101,7 @@ fun FormularioAnonimoScreen(navController: NavController) {
                 )
                 BottomAppBar(
                     containerColor = Color.Black,
-                    contentPadding = PaddingValues(25.dp, 0.dp,),
+                    contentPadding = PaddingValues(25.dp, 0.dp),
                     modifier = Modifier.heightIn(min = 0.dp)
                 ) { // 🔵 Botão enviar (simulação)
                     Button(
@@ -124,8 +124,8 @@ fun FormularioAnonimoScreen(navController: NavController) {
                         Text(
                             "Enviar",
                             color = Color.White,
-                            fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
-                            fontWeight = FontWeight.Normal // 🔹 opcional: deixa em negrito
+                            style = MaterialTheme.typography.bodyLarge, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
+                            fontWeight = FontWeight.Light // 🔹 opcional: deixa em negrito
                         )
                     }
 
@@ -140,41 +140,44 @@ fun FormularioAnonimoScreen(navController: NavController) {
                 .padding(20.dp, 0.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(40.dp).fillMaxWidth())
+            Spacer(
+                modifier = Modifier
+                    .height(40.dp)
+                    .fillMaxWidth()
+            )
             // 🔵 Título principal
             Text(
                 text = "Fatores de Carga de Trabalho",
-                fontSize = 40.sp,
-                lineHeight = 48.sp,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Normal,
                 color = YouPrimarySubtle,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
             // Pergunta 1
             PerguntaDropdown(
-                titulo = "Como você avalia sua carga de trabalho?",
-                resposta = resposta1,
+                title = "Como você avalia sua carga de trabalho?",
+                answer = resposta1,
                 onSelect = { resposta1 = it },
-                opcoes = listOf("Leve", "Moderada", "Pesada", "Muito pesada"),
+                options = listOf("Leve", "Moderada", "Pesada", "Muito pesada"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 2
             PerguntaDropdown(
-                titulo = "Sua carga de trabalho afeta sua qualidade de vida?",
-                resposta = resposta2,
+                title = "Sua carga de trabalho afeta sua qualidade de vida?",
+                answer = resposta2,
                 onSelect = { resposta2 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
             // Pergunta 3
             PerguntaDropdown(
-                titulo = "Você trabalha além do seu horário regular?",
-                resposta = resposta3,
+                title = "Você trabalha além do seu horário regular?",
+                answer = resposta3,
                 onSelect = { resposta3 = it },
-                opcoes = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
+                options = listOf("Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"),
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 

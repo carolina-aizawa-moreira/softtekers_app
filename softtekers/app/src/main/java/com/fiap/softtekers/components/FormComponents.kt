@@ -1,21 +1,33 @@
 package com.fiap.softtekers.components
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
-import androidx.compose.runtime.*
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PerguntaDropdown(
-    titulo: String,
-    resposta: String,
+    title: String,
+    answer: String,
     onSelect: (String) -> Unit,
-    opcoes: List<String>,
+    options: List<String>,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -23,14 +35,18 @@ fun PerguntaDropdown(
     Column(
         modifier = modifier.padding(vertical = 15.dp)
     ) {
-        Text(titulo, color = Color.White, fontSize = 20.sp)
+        Text(
+            title,
+            color = Color.White,
+            style = MaterialTheme.typography.bodyLarge,
+        )
 
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {
             TextField(
-                value = resposta,
+                value = answer,
                 onValueChange = {},
                 readOnly = true,
                 placeholder = { Text("Select", color = Color.LightGray) },
@@ -53,7 +69,7 @@ fun PerguntaDropdown(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                opcoes.forEach { option ->
+                options.forEach { option ->
                     DropdownMenuItem(
                         text = { Text(option, color = Color.White) },
                         onClick = {
