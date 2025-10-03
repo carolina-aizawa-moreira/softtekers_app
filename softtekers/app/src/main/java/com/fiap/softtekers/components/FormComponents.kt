@@ -1,8 +1,13 @@
 package com.fiap.softtekers.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -40,6 +45,7 @@ fun PerguntaDropdown(
             color = Color.White,
             style = MaterialTheme.typography.bodyLarge,
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -51,16 +57,22 @@ fun PerguntaDropdown(
                 readOnly = true,
                 placeholder = { Text("Select", color = Color.LightGray) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
                     .menuAnchor(MenuAnchorType.PrimaryNotEditable)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .border(
+                        width = ButtonDefaults.outlinedButtonBorder.width,
+                        color = Color.Gray,
+                        shape = RoundedCornerShape(10.dp)
+                    ),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Black,
                     unfocusedContainerColor = Color.Black,
                     focusedTextColor = Color.White,
                     unfocusedTextColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
-                    focusedIndicatorColor = Color(0xFF5A73FC),
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
                     cursorColor = Color.White
                 )
             )

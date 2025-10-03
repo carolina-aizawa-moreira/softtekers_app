@@ -40,7 +40,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.fiap.softtekers.components.PerguntaDropdown
@@ -136,7 +135,7 @@ fun SinaisDeAlertaScreen(navController: NavController) {
                         Text(
                             "Enviar",
                             color = Color.White,
-                            fontSize = 20.sp, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
+                            style = MaterialTheme.typography.bodyLarge, // 🔹 aumenta aqui (ex: 20sp, pode testar 22sp também)
                             fontWeight = FontWeight.Light // 🔹 opcional: deixa em negrito
                         )
                     }
@@ -155,8 +154,8 @@ fun SinaisDeAlertaScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(40.dp).fillMaxWidth())
             Text(
                 text = "Sinais de Alerta",
-                fontSize = 50.sp,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Normal,
                 color = YouPrimarySubtle,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
