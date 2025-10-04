@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,20 +21,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import br.com.fiap.consultacep.service.RetrofitFactory
 import com.fiap.softtekers.R
+import com.fiap.softtekers.model.FormAnalisys
 import com.fiap.softtekers.repository.getAllFormAnalisys
 import com.fiap.softtekers.screens.analisysScreen.components.CardAnalisysCarrousel
 import com.fiap.softtekers.ui.theme.YouTertiary
+import kotlinx.coroutines.launch
 
 @Composable
 fun AnalisysScreen(navController: NavController){
+
     var formsListState by remember {
-        mutableStateOf(getAllFormAnalisys())
+        mutableStateOf(listOf<FormAnalisys>())
+    }
+
+    LaunchedEffect(Unit) {
+        launch {
+            try {
+                val forms = RetrofitFactory().getAnalisysService().getAllFroms()
+                formsListState = forms
+            } catch (e: Exception) {
+                formsListState = getAllFormAnalisys();
+            }
+        }
     }
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize() // Use fillMaxSize to cover the whole screen
+            .fillMaxSize()
             .background(
                 color = Color(0xFF1948FF),
             )
