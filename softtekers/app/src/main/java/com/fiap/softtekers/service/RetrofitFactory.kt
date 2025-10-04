@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitFactory {
 
-    private val URL = "https://challenge-softtek-production.up.railway.app/"
+    private val URL = "htps://challenge-softtek-production.up.railway.app/"
 
     private val retrofitFactory = Retrofit
         .Builder()

@@ -1,6 +1,5 @@
 package com.fiap.softtekers.screens.analisysScreen
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,6 +24,7 @@ import androidx.navigation.NavController
 import br.com.fiap.consultacep.service.RetrofitFactory
 import com.fiap.softtekers.R
 import com.fiap.softtekers.model.FormAnalisys
+import com.fiap.softtekers.repository.getAllFormAnalisys
 import com.fiap.softtekers.screens.analisysScreen.components.CardAnalisysCarrousel
 import com.fiap.softtekers.ui.theme.YouTertiary
 import kotlinx.coroutines.launch
@@ -37,23 +37,19 @@ fun AnalisysScreen(navController: NavController){
     }
 
     LaunchedEffect(Unit) {
-        // 'launch' is optional here since LaunchedEffect provides a scope,
-        // but it can be good for clarity.
         launch {
             try {
-                // Call the suspend function directly
                 val forms = RetrofitFactory().getAnalisysService().getAllFroms()
                 formsListState = forms
             } catch (e: Exception) {
-                // Handle any network or parsing exceptions
-                Log.e("API_ERROR", "Failed to fetch forms: ${e.message}", e)
+                formsListState = getAllFormAnalisys();
             }
         }
     }
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize() // Use fillMaxSize to cover the whole screen
+            .fillMaxSize()
             .background(
                 color = Color(0xFF1948FF),
             )

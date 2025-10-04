@@ -5,7 +5,7 @@ import retrofit2.http.GET
 interface HomeService {
 
     //Pego todos os forms suas ultimas responstas
-    @GET("/json/")
+    @GET("/forms")
     suspend fun getAllFroms(): List<Form>
 
 }
