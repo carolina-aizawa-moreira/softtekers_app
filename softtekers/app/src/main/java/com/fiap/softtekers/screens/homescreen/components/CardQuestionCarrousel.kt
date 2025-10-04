@@ -29,7 +29,6 @@ import com.fiap.softtekers.model.Form
 @Composable
 fun CardQuestionCarrousel(
     form: Form,
-    route: String,
     navController: NavController) {
 
     val questions = form.questions
@@ -64,7 +63,7 @@ fun CardQuestionCarrousel(
                         .testTag("formTitle")
                 )
                 OutlinedButton(
-                    onClick = { navController.navigate(route) },
+                    onClick = { navController.navigate(form.route) },
                     border = BorderStroke(0.dp, Color.Transparent),
                     colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
                     contentPadding = PaddingValues(),
@@ -97,7 +96,7 @@ fun CardQuestionCarrousel(
                     CardQuestion(
                         it,
                         navController,
-                        route
+                        form.route
                     ) // This spacer is now for the space *between* items.
                 }
             }
